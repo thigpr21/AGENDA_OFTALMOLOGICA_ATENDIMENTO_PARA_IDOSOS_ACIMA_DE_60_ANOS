@@ -1,6 +1,6 @@
 # AGENDA OFTALMOLOGICA ATENDIMENTO PARA IDOSOS ACIMA DE 60 ANOS
 
-*Ideia principal do projeto*
+**Ideia principal do projeto**
 
 O projeto tem como objetivo desenvolver um algoritmo voltado para auxiliar pessoas com 60 anos ou mais no gerenciamento de consultas oftalmológicas. A ideia surgiu a partir da observação das dificuldades que muitos idosos possuem ao lidar com agendamentos médicos, lembretes de retorno e organização de consultas.
 
