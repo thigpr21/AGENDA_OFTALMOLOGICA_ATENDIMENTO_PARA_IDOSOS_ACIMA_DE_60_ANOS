@@ -16,6 +16,7 @@ int main() {
     scanf("%d", &opcao);
 
     while (opcao != 0) {
+
         while (opcao < 0 || opcao > 3) {
             printf("OPCAO INEXISTENTE.\n");
             printf("\n=== AGENDA OFTALMOLOGICA 60+ ===\n");
@@ -26,6 +27,7 @@ int main() {
             printf("opcao --> ");
             scanf("%d", &opcao);
         }
+
         switch (opcao) {
 
             case 1:
@@ -59,7 +61,7 @@ int main() {
                     scanf(" %[^\n]", dadoEspecifico);
                 }
                 if (especialidade == 2) {
-                    printf("Pressao Intraocular (PIO) (ex: 14 mmHg): ");
+                    printf("Pressao Intraocular - PIO (ex: 14 mmHg): ");
                     scanf(" %[^\n]", dadoEspecifico);
                 }
                 if (especialidade == 3) {
@@ -90,30 +92,29 @@ int main() {
                 if (arqList == NULL) {
                     printf("Nenhuma consulta cadastrada ainda.\n");
                 } else {
-                    while (fscanf(arqList, "%99[^;];\n%19[^;];\n%9[^;];\n%d;\n%199[^;];\n%199[^;];\n\n", nome, data, hora, &especialidade, dadoEspecifico, lembrete) == 6) {
+                    while (fscanf(arqList, "%99[^;];\n", nome) == 1) {
+                        fscanf(arqList, "%19[^;];\n", data);
+                        fscanf(arqList, "%9[^;];\n", hora);
+                        fscanf(arqList, "%d;\n", &especialidade);
+                        fscanf(arqList, "%199[^;];\n", dadoEspecifico);
+                        fscanf(arqList, "%199[^;];\n\n", lembrete);
+
                         contador++;
                         printf("\n[%d]\n", contador);
                         printf("  Paciente     : %s\n", nome);
                         printf("  Data         : %s\n", data);
                         printf("  Hora         : %s\n", hora);
-                        printf("  Especialidade: ");
 
-                        if (especialidade == 1) {
-                            printf("Refracao\n");
-                            printf("  Grau dos olhos: %s\n", dadoEspecifico);
-                        }
-                        if (especialidade == 2) {
-                            printf("Glaucoma\n");
-                            printf("  PIO            : %s\n", dadoEspecifico);
-                        }
-                        if (especialidade == 3) {
-                            printf("Retina\n");
-                            printf("  Status retina  : %s\n", dadoEspecifico);
-                        }
-                        if (especialidade == 4) {
-                            printf("VSN\n");
-                            printf("  Auxilio optico : %s\n", dadoEspecifico);
-                        }
+                        printf("  Especialidade: ");
+                        if (especialidade == 1) { printf("Refracao\n"); }
+                        if (especialidade == 2) { printf("Glaucoma\n"); }
+                        if (especialidade == 3) { printf("Retina\n"); }
+                        if (especialidade == 4) { printf("VSN\n"); }
+
+                        if (especialidade == 1) { printf("  Grau dos olhos: %s\n", dadoEspecifico); }
+                        if (especialidade == 2) { printf("  PIO            : %s\n", dadoEspecifico); }
+                        if (especialidade == 3) { printf("  Status retina  : %s\n", dadoEspecifico); }
+                        if (especialidade == 4) { printf("  Auxilio optico : %s\n", dadoEspecifico); }
 
                         printf("  Lembrete     : %s\n", lembrete);
                     }
@@ -123,6 +124,7 @@ int main() {
                     } else {
                         printf("\nTotal: %d consulta(s) agendada(s).\n", contador);
                     }
+
                     fclose(arqList);
                 }
                 break;
@@ -138,8 +140,15 @@ int main() {
                 if (arqBus == NULL) {
                     printf("Nenhuma consulta cadastrada ainda.\n");
                 } else {
-                    while (fscanf(arqBus, "%99[^;];\n%19[^;];\n%9[^;];\n%d;\n%199[^;];\n%199[^;];\n\n", nome, data, hora, &especialidade, dadoEspecifico, lembrete) == 6) {
+                    while (fscanf(arqBus, "%99[^;];\n", nome) == 1) {
+                        fscanf(arqBus, "%19[^;];\n", data);
+                        fscanf(arqBus, "%9[^;];\n", hora);
+                        fscanf(arqBus, "%d;\n", &especialidade);
+                        fscanf(arqBus, "%199[^;];\n", dadoEspecifico);
+                        fscanf(arqBus, "%199[^;];\n\n", lembrete);
+
                         int i = 0, j = 0, achou = 1;
+
                         while (busca[j] != '\0') {
                             if (nome[i] == '\0') {
                                 achou = 0;
@@ -155,36 +164,33 @@ int main() {
                                 j = 0;
                             }
                         }
+
                         if (achou == 1) {
                             encontrado++;
                             printf("\nResultado %d:\n", encontrado);
                             printf("  Paciente     : %s\n", nome);
                             printf("  Data         : %s\n", data);
                             printf("  Hora         : %s\n", hora);
-                            printf("  Especialidade: ");
 
-                            if (especialidade == 1) {
-                                printf("Refracao\n");
-                                printf("  Grau dos olhos: %s\n", dadoEspecifico);
-                            }
-                            if (especialidade == 2) {
-                                printf("Glaucoma\n");
-                                printf("  PIO            : %s\n", dadoEspecifico);
-                            }
-                            if (especialidade == 3) {
-                                printf("Retina\n");
-                                printf("  Status retina  : %s\n", dadoEspecifico);
-                            }
-                            if (especialidade == 4) {
-                                printf("VSN\n");
-                                printf("  Auxilio optico : %s\n", dadoEspecifico);
-                            }
+                            printf("  Especialidade: ");
+                            if (especialidade == 1) { printf("Refracao\n"); }
+                            if (especialidade == 2) { printf("Glaucoma\n"); }
+                            if (especialidade == 3) { printf("Retina\n"); }
+                            if (especialidade == 4) { printf("VSN\n"); }
+
+                            if (especialidade == 1) { printf("  Grau dos olhos: %s\n", dadoEspecifico); }
+                            if (especialidade == 2) { printf("  PIO            : %s\n", dadoEspecifico); }
+                            if (especialidade == 3) { printf("  Status retina  : %s\n", dadoEspecifico); }
+                            if (especialidade == 4) { printf("  Auxilio optico : %s\n", dadoEspecifico); }
+
                             printf("  Lembrete     : %s\n", lembrete);
                         }
                     }
+
                     if (encontrado == 0) {
                         printf("Nenhum paciente encontrado com esse nome.\n");
                     }
+
                     fclose(arqBus);
                 }
                 break;
