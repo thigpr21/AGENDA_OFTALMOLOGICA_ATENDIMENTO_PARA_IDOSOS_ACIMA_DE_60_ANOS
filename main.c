@@ -46,7 +46,7 @@ int main() {
                 printf("1. Refracao\n");
                 printf("2. Glaucoma\n");
                 printf("3. Retina\n");
-                printf("4. VSN\n");
+                printf("4. VSN (Visao subnormal)\n");
                 printf("opcao --> ");
                 scanf("%d", &especialidade);
 
@@ -109,7 +109,7 @@ int main() {
                         if (especialidade == 1) { printf("Refracao\n"); }
                         if (especialidade == 2) { printf("Glaucoma\n"); }
                         if (especialidade == 3) { printf("Retina\n"); }
-                        if (especialidade == 4) { printf("VSN\n"); }
+                        if (especialidade == 4) { printf("VSN (Visao subnormal)\n"); }
 
                         if (especialidade == 1) { printf("  Grau dos olhos: %s\n", dadoEspecifico); }
                         if (especialidade == 2) { printf("  PIO            : %s\n", dadoEspecifico); }
@@ -176,7 +176,7 @@ int main() {
                             if (especialidade == 1) { printf("Refracao\n"); }
                             if (especialidade == 2) { printf("Glaucoma\n"); }
                             if (especialidade == 3) { printf("Retina\n"); }
-                            if (especialidade == 4) { printf("VSN\n"); }
+                            if (especialidade == 4) { printf("VSN (Visao subnormal)\n"); }
 
                             if (especialidade == 1) { printf("  Grau dos olhos: %s\n", dadoEspecifico); }
                             if (especialidade == 2) { printf("  PIO            : %s\n", dadoEspecifico); }

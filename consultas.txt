@@ -3,7 +3,7 @@ Thiago;
 15:00;
 1;
 OD -2.50 / OE -1.75;
-Levar oculos;
+Levar prescricao anterior;
 
 Maria;
 11/06/2026;
@@ -11,13 +11,6 @@ Maria;
 1;
 OD +1.25 / -0.75;
 Traga um acompanhante por causa da dilatacao da pupila (visao embacada);
-
-Paulo;
-26/06/2026;
-18:00;
-4;
-Lupa eletronica 6x com Filtro Seletivo;
-Retorno no dia 28/06/2026;
 
 Clara;
 01/07/2026;
@@ -30,13 +23,12 @@ Pedro;
 15/06/2026;
 17:00;
 3;
-Necessidade de operar com lazer;
-Retorno no dia 10/07/2026;
+Necessidade de operar com laser;
+Repouso visual no dia do tratamento, alem de vir por carona;
 
-Lucas;
-07/07/2026;
-17:30;
-1;
-OD -2.75 / OE -1.50;
-Levar prescricao anterior;
-
+Paulo;
+26/06/2026;
+18:00;
+4;
+Lupa eletronica 6x com filtro seletivo;
+Trazer oculos;
