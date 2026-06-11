@@ -9,3 +9,8 @@ O sistema será baseado em menus simples e intuitivos, facilitando o uso mesmo p
 Além disso, o programa contará com diferentes especialidades oftalmológicas, como refração, glaucoma, retina e VSN, ajudando o paciente a identificar corretamente o tipo de consulta necessária.
 
 A proposta do projeto é utilizar a programação como ferramenta de acessibilidade e apoio à saúde, oferecendo mais organização, autonomia e praticidade para idosos no acompanhamento de seus cuidados médicos.
+
+**Funcionalidades**
+- Leitura do cadastro de cada paciente, incluindo qual exame ele deseja cadastrar;
+- Visualização de cada consulta agendada no banco de dados, inclusive mostrando o nome e a data de cada paciente, além do lembrete em si;
+- Implementação da "busca", que procura o nome do paciente desejado à ser visualizado.
