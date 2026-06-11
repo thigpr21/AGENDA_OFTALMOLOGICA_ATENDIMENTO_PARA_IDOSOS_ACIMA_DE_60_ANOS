@@ -12,5 +12,5 @@ A proposta do projeto é utilizar a programação como ferramenta de acessibilid
 
 **Funcionalidades**
 - Leitura do cadastro de cada paciente, incluindo qual exame ele deseja cadastrar;
-- Visualização de cada consulta agendada no banco de dados, inclusive mostrando o nome e a data de cada paciente, além do lembrete em si;
+- Visualização de cada consulta agendada no banco de dados, inclusive mostrando o nome e a data de cada paciente;
 - Implementação da "busca", que procura o nome do paciente desejado à ser visualizado.
