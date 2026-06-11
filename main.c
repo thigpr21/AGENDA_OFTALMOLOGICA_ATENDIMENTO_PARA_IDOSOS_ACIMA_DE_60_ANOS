@@ -1,9 +1,14 @@
 #include <stdio.h>
+#include <locale.h>
 
 #define ARQUIVO "consultas.txt"
 
 int main() {
+    setlocale(LC_ALL, "portuguese");
+
+    FILE *arq;
     int opcao, especialidade, encontrado, contador;
+    int i, j, tam, achou;
     char nome[100], data[20], hora[10], lembrete[200], busca[100];
     char dadoEspecifico[200];
 
@@ -76,28 +81,30 @@ int main() {
                 printf("Lembrete / observacao (ex: levar oculos, retorno, etc): ");
                 scanf(" %[^\n]", lembrete);
 
-                FILE *arqCad = fopen(ARQUIVO, "a");
-                fprintf(arqCad, "%s;\n%s;\n%s;\n%d;\n%s;\n%s;\n\n", nome, data, hora, especialidade, dadoEspecifico, lembrete);
-                fclose(arqCad);
-
-                printf("Consulta cadastrada com sucesso!\n");
+                arq = fopen(ARQUIVO, "a");
+                if (arq == NULL)
+                    printf("Erro ao abrir o arquivo!\n");
+                else {
+                    fprintf(arq, "%s;\n%s;\n%s;\n%d;\n%s;\n%s;\n\n", nome, data, hora, especialidade, dadoEspecifico, lembrete);
+                    fclose(arq);
+                    printf("Consulta cadastrada com sucesso!\n");
+                }
                 break;
 
             case 2:
                 contador = 0;
                 printf("\n--- CONSULTAS AGENDADAS ---\n");
 
-                FILE *arqList = fopen(ARQUIVO, "r");
-
-                if (arqList == NULL) {
+                arq = fopen(ARQUIVO, "r");
+                if (arq == NULL)
                     printf("Nenhuma consulta cadastrada ainda.\n");
-                } else {
-                    while (fscanf(arqList, "%99[^;];\n", nome) == 1) {
-                        fscanf(arqList, "%19[^;];\n", data);
-                        fscanf(arqList, "%9[^;];\n", hora);
-                        fscanf(arqList, "%d;\n", &especialidade);
-                        fscanf(arqList, "%199[^;];\n", dadoEspecifico);
-                        fscanf(arqList, "%199[^;];\n\n", lembrete);
+                else {
+                    while ((fscanf(arq, "%99[^;];\n", nome)) != EOF) {
+                        fscanf(arq, "%19[^;];\n", data);
+                        fscanf(arq, "%9[^;];\n", hora);
+                        fscanf(arq, "%d;\n", &especialidade);
+                        fscanf(arq, "%199[^;];\n", dadoEspecifico);
+                        fscanf(arq, "%199[^;];\n\n", lembrete);
 
                         contador++;
                         printf("\n[%d]\n", contador);
@@ -125,7 +132,7 @@ int main() {
                         printf("\nTotal: %d consulta(s) agendada(s).\n", contador);
                     }
 
-                    fclose(arqList);
+                    fclose(arq);
                 }
                 break;
 
@@ -135,33 +142,32 @@ int main() {
                 printf("Digite o nome do paciente: ");
                 scanf(" %[^\n]", busca);
 
-                FILE *arqBus = fopen(ARQUIVO, "r");
-
-                if (arqBus == NULL) {
+                arq = fopen(ARQUIVO, "r");
+                if (arq == NULL)
                     printf("Nenhuma consulta cadastrada ainda.\n");
-                } else {
-                    while (fscanf(arqBus, "%99[^;];\n", nome) == 1) {
-                        fscanf(arqBus, "%19[^;];\n", data);
-                        fscanf(arqBus, "%9[^;];\n", hora);
-                        fscanf(arqBus, "%d;\n", &especialidade);
-                        fscanf(arqBus, "%199[^;];\n", dadoEspecifico);
-                        fscanf(arqBus, "%199[^;];\n\n", lembrete);
+                else {
+                    while ((fscanf(arq, "%99[^;];\n", nome)) != EOF) {
+                        fscanf(arq, "%19[^;];\n", data);
+                        fscanf(arq, "%9[^;];\n", hora);
+                        fscanf(arq, "%d;\n", &especialidade);
+                        fscanf(arq, "%199[^;];\n", dadoEspecifico);
+                        fscanf(arq, "%199[^;];\n\n", lembrete);
 
-                        int i = 0, j = 0, achou = 1;
+                        achou = 0;
+                        for (tam = 0; busca[tam] != '\0'; tam++);
 
-                        while (busca[j] != '\0') {
-                            if (nome[i] == '\0') {
-                                achou = 0;
-                                j = 0;
-                                i = 0;
-                                break;
-                            }
-                            if (nome[i] == busca[j]) {
-                                i++;
-                                j++;
-                            } else {
-                                i = i - j + 1;
-                                j = 0;
+                        for (i = 0; nome[i] != '\0'; i++) {
+                            if (nome[i] == busca[0]) {
+                                achou = 1;
+                                for (j = 1; j < tam; j++) {
+                                    if (nome[i + j] != busca[j]) {
+                                        achou = 0;
+                                        break;
+                                    }
+                                }
+                                if (achou == 1) {
+                                    break;
+                                }
                             }
                         }
 
@@ -191,7 +197,7 @@ int main() {
                         printf("Nenhum paciente encontrado com esse nome.\n");
                     }
 
-                    fclose(arqBus);
+                    fclose(arq);
                 }
                 break;
         }
