@@ -85,7 +85,7 @@ int main() {
                 if (arq == NULL)
                     printf("Erro ao abrir o arquivo!\n");
                 else {
-                    fprintf(arq, "%s;\n%s;\n%s;\n%d;\n%s;\n%s;\n\n", nome, data, hora, especialidade, dadoEspecifico, lembrete);
+                    fprintf(arq, "%s;\n%s;\n%s;\n%d;\n%s;\n%s;\n \n", nome, data, hora, especialidade, dadoEspecifico, lembrete);
                     fclose(arq);
                     printf("Consulta cadastrada com sucesso!\n");
                 }
